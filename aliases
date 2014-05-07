@@ -1,0 +1,67 @@
+# Hub Alias
+eval "$(hub alias -s)"
+
+# Git Aliases
+alias gc='git commit -m'
+alias gca='git commit -am'
+alias gco='git checkout'
+alias ga='git add'
+alias gf='git fetch'
+alias gp='git push'
+alias gpl='git pull'
+alias gs='git status -sb'
+alias gap='git add -p'
+alias gd='git difftool'
+alias gdc='git difftool --cached'
+alias gl='git hist'
+alias gl5='git hist -5'
+alias gl10='git hist -10'
+alias gsa='git show'
+alias gsf='git show --pretty="format:" --name-only'
+alias branches='git branch -a'
+alias gbd='git branch -D'
+alias remotes='git remote -v'
+alias hpp='heroku pipeline:promote --remote staging'
+alias hc='heroku console'
+alias hcr='heroku console --remote'
+alias grp='git remote prune'
+
+# Rails Aliases
+alias be='bundle exec'
+alias rc='rails console'
+alias rs='rails server'
+alias rdm='rake db:migrate'
+alias rdmb='rake db:migrate && rake db:migrate RAILS_ENV=test'
+
+# Misc Ruby Aliases
+alias fs='foreman start -f'
+alias sp='rspec -cfn'
+alias r='rake'
+
+# Random Aliases
+alias sbp='source ~/.bash_profile'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias _='!!'
+alias be='bundle exec'
+alias l="tree -LFaC 1"
+alias l2="tree -LFaC 2"
+alias l3="tree -LFaC 3"
+alias search_for="find ./ -name"
+
+function cc {
+  cd ~/projects/$1
+}
+
+parse_git_branch() {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\ →\ \1/'
+}
+
+#export PS1='\u\[\e[1;37m\]@\[\e[1;32m\]\h\[\e[1;37m\]:\[\e[1;31m\]\W\[\e[1;33m\]$(parse_git_branch)\[\e[0;39m\]> '
+export PS1='\n\[\e[1;31m\]\W\[\e[1;33m\]$(parse_git_branch)\[\e[0;39m\]> '
+export PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
+
+export BUNDLER_EDITOR=subl
+export EDITOR=vim
